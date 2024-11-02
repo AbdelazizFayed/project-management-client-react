@@ -1,52 +1,83 @@
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './Components/Sidebar';
 import Navbar from './Components/Navbar';
 import ProjectList from './Features/Projects/ProjectList';
 import ProjectDetail from './Features/Projects/ProjectDetail';
+import TaskList from './Features/Tasks/TaskList';
+import Login from './Features/Auth/Login';
+import  AuthProvider  from './Context/AuthContext';
+import { ProjectProvider } from './Context/ProjectContext'; // Correct import for named export
+import ProtectedRoute from './Components/ProtectRoute';
 
 function App() {
   return (
-    <Router>
-      <div className="flex h-screen">
-        <Sidebar />
-        <div className="flex-1 flex flex-col">
-          <Navbar />
-          <main className="flex-1 p-6">
+    <AuthProvider>
+      <ProjectProvider> {/* Wrap in ProjectProvider if context is needed */}
+        <Router>
+          <div className="h-screen flex">
             <Routes>
-              <Route path="/" element={<ProjectList />} />
-              <Route path="/project/:id" element={<ProjectDetail />} />
+              {/* Protected routes */}
+              <Route
+                path="/projects"
+                element={
+                  <ProtectedRoute>
+                    <div className="flex h-screen">
+                      <Sidebar />
+                      <div className="flex-1 flex flex-col">
+                        <Navbar />
+                        <main className="flex-1 p-6">
+                          <ProjectList />
+                        </main>
+                      </div>
+                    </div>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/projects/:id"
+                element={
+                  <ProtectedRoute>
+                    <div className="flex h-screen">
+                      <Sidebar />
+                      <div className="flex-1 flex flex-col">
+                        <Navbar />
+                        <main className="flex-1 p-6">
+                          <ProjectDetail />
+                        </main>
+                      </div>
+                    </div>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/projects/:projectId/tasks"
+                element={
+                  <ProtectedRoute>
+                    <div className="flex h-screen">
+                      <Sidebar />
+                      <div className="flex-1 flex flex-col">
+                        <Navbar />
+                        <main className="flex-1 p-6">
+                          <TaskList />
+                        </main>
+                      </div>
+                    </div>
+                  </ProtectedRoute>
+                }
+              />
+
+
+              {/* Public routes */}
+              <Route path="/login" element={<Login />} />
             </Routes>
-          </main>
-        </div>
-      </div>
-    </Router>
+          </div>
+        </Router>
+      </ProjectProvider>
+    </AuthProvider>
   );
 }
 
 export default App;
+
+
