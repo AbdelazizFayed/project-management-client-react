@@ -10,6 +10,7 @@ export const ProjectProvider = ({ children }) => {
 
   // Fetch all projects
   const fetchAllProjects = useCallback(async () => {
+    debugger
     setLoading(true);
     try {
       const data = await projectService.fetchProjects();

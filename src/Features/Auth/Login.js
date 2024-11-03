@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import AuthContext from '../../Context/AuthContext';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { login as loginService } from '../../Services/AuthService';
-
+debugger;
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +20,7 @@ const Login = () => {
       login(user, token, refreshToken); 
       console.log('Login successful');
       setError(null); // Clear any existing error
-     // navigate('/ProjectList');
+      navigate('/ProjectList');
     } catch (error) {
       setError("Login failed. Please check your credentials."); // Set error for UI display
       console.error(error);

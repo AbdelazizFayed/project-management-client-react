@@ -1,14 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './Components/Sidebar';
-import Navbar from './Components/Navbar';
-import ProjectList from './Features/Projects/ProjectList';
-import ProjectDetail from './Features/Projects/ProjectDetail';
-import TaskList from './Features/Tasks/TaskList';
-import Login from './Features/Auth/Login';
-import  AuthProvider  from './Context/AuthContext';
+import TaskDetail from './Features/Tasks/TaskDetail'
+import  {AuthProvider } from './Context/AuthContext';
 import { ProjectProvider } from './Context/ProjectContext'; // Correct import for named export
-import ProtectedRoute from './Components/ProtectRoute';
+import Login from './Features/Auth/Login';
+import ProjectList from './Features/Projects/ProjectList';
 
 function App() {
   return (
@@ -19,22 +15,20 @@ function App() {
             <Routes>
               {/* Protected routes */}
               <Route
-                path="/projects"
+                path="/Login"
                 element={
-                  <ProtectedRoute>
-                    <div className="flex h-screen">
-                      <Sidebar />
-                      <div className="flex-1 flex flex-col">
-                        <Navbar />
-                        <main className="flex-1 p-6">
-                          <ProjectList />
-                        </main>
-                      </div>
-                    </div>
-                  </ProtectedRoute>
+                  <Login/>
                 }
+
               />
               <Route
+                path="/ProjectList"
+                element={
+                  <ProjectList/>
+                }
+
+              />
+              {/* <Route
                 path="/projects/:id"
                 element={
                   <ProtectedRoute>
@@ -49,8 +43,8 @@ function App() {
                     </div>
                   </ProtectedRoute>
                 }
-              />
-              <Route
+              /> */}
+              {/* <Route
                 path="/projects/:projectId/tasks"
                 element={
                   <ProtectedRoute>
@@ -65,11 +59,11 @@ function App() {
                     </div>
                   </ProtectedRoute>
                 }
-              />
+              /> */}
 
 
               {/* Public routes */}
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/login" element={<Login />} /> */}
             </Routes>
           </div>
         </Router>
