@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-debugger;
 
 const AuthContext = createContext();
 

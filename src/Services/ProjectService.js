@@ -5,7 +5,6 @@ const Project_API_URL = `${API_URL}/Project`;
 const token = localStorage.getItem('token'); 
 
 export const fetchProjects = async () => {
-  debugger;
   const response = await axiosInstance.get(`${Project_API_URL}/GetAllProjects`,{
     headers:{
       Authorization:  `Bearer ${token}`,

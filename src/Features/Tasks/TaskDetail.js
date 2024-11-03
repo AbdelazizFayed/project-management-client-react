@@ -5,7 +5,6 @@ const TaskDetail = () => {
   const handleButtonClick = () => {
     alert("Button clicked!");
   };
-  debugger;
 
   return (
     <div style={{ padding: '20px' }}>

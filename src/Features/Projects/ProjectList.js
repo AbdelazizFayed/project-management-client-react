@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useProjects } from '../../Context/ProjectContext';
 
 const ProjectList = () => {
-  debugger;
   const { projects, loading, error, fetchAllProjects } = useProjects();
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';

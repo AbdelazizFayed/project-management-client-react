@@ -21,7 +21,6 @@ import App from './App';
 import { ProjectProvider } from './Context/ProjectContext';
 import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-debugger;
 root.render(
   <React.StrictMode>
     <App/>
