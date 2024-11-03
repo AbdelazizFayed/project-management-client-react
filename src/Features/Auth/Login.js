@@ -20,7 +20,7 @@ const Login = () => {
       login(user, token, refreshToken); 
       console.log('Login successful');
       setError(null); // Clear any existing error
-      navigate('/ProjectList');
+      navigate('/Projects');
     } catch (error) {
       setError("Login failed. Please check your credentials."); // Set error for UI display
       console.error(error);
