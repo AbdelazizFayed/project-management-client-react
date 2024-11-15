@@ -32,6 +32,7 @@ function App() {
                   </MasterLayout>
                 }
               />
+              <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
